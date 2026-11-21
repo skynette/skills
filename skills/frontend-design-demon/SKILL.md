@@ -42,6 +42,7 @@ stack: <none until stage 6>
 | `refs/shortlist.html` but no `picks.md` | references (ask for the picks; don't re-ask "Got references?") |
 | `picks.md` | prd |
 | `prd.md` | canvas |
+| `design-notes.md` with `## Directions` but no `## Direction picked` | design (ask which direction) |
 | `design-notes.md` with no `## Round` block | design (first design not drawn yet) |
 | `design-notes.md` with a `## Round` block but no `## Approved` | iterate |
 | `design-notes.md` with `## Approved` | code |
@@ -58,7 +59,7 @@ exists but was never approved), ask that checkpoint's question first. Update `ST
 | 1 | references | Ask "Got references?", then take the user's references or run the taste interview, then source | `references/sources.md` | **They confirm the picks** |
 | 2 | prd | GPT writes `prd.md` through Codex (or you write it as the fallback) | `references/prd-prompt.md` | **They approve the PRD** |
 | 3 | canvas | Ask Claude Design (default), Pencil or Figma, then set up the References board | `references/design-stage.md` | Only if Pencil has no document open, or a design-system choice is needed |
-| 4 | design | First design: desktop 1440 and mobile 390 frames, real copy | `references/design-stage.md` | **They give feedback** |
+| 4 | design | If the user had no references: three directions first. Then the first design: desktop 1440 and mobile 390 frames, real copy, self-critiqued | `references/design-stage.md` | **They pick a direction** (no-reference pages only), then **they give feedback** |
 | 5 | iterate | Apply a round, log it, screenshot, repeat | `references/design-stage.md` | **They approve** |
 | 6 | code | Ask for the stack, build, run the checker | `references/code-stage.md` | **Final review** |
 
@@ -118,6 +119,18 @@ Check once at the start of a page and say in one line what's missing. Never bloc
 | Claude in Chrome, or Playwright MCP | Sourcing references, screenshotting links | Ask the user for screenshots instead |
 | Node 18+ | The shortlist page | List the candidates in chat with their files |
 | Skills `design-taste-frontend`, `frontend-design`, `emil-design-eng`, `gsap-core` | Taste rules, polish, motion | Apply the same intent from your own judgement, and mention `npx skills add` for the missing ones once |
+| Skill `ui-ux-pro-max` | Palette, font pairing and UX rules before drawing | Choose them from the picks yourself |
+| Skill `oil-ui` | Three directions when the user has no references | Draw three directions yourself, same rules |
+| Skill `impeccable` | Critique before each round; audit and polish at code | Self-review against the brief and the taste rules |
+| Emil's `review-animations`, `animation-vocabulary`, `choreograph`, `break-ui`, `pick-ui-library`, `learn-taste` | Motion review, naming motion, group motion, worst-case data, library choice, saving the user's corrections as rules | Do the same checks by hand, or skip `learn-taste` |
+
+**When the skills disagree**, the order is:
+1. The user's brief and picks.
+2. The approved design.
+3. `design-taste-frontend` house rules.
+4. Suggestions from `impeccable`, `oil-ui` and `ui-ux-pro-max`.
+
+Say in one line which rule lost when it matters.
 
 ## Never
 

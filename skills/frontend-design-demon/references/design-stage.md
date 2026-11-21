@@ -55,15 +55,35 @@ SKILL.md). Their rules apply to what you draw:
 - equal edges
 - one section per screen at desktop
 
+**Plan the system first** (only if the project has no styles of its own and no design system was chosen): use
+`ui-ux-pro-max` to look up a palette, a font pairing and the UX rules for this product type, guided by `picks.md` and
+`taste.md`. Write the result to `design-notes.md` under `## System` (colours, type, spacing, in a few lines). The picks
+outrank its suggestions.
+
+**Three directions first, only when the user brought no references** (`taste.md` exists, or the picks all came from
+sourcing):
+- Use `oil-ui`'s 3-direction comparison. Each direction is the hero plus one more key section, desktop only, all
+  three genuinely different (not three shades of one idea), each traceable to `taste.md` and the picks.
+- On Claude Design, these are three artboards (`DirA`, `DirB`, `DirC`). On Pencil, they're three frames. Otherwise,
+  use oil-ui's HTML comparison page.
+- Never use image generation that spends paid credits (oil-ui's Oil credits) without asking the user first.
+- Log `## Directions` in `design-notes.md` (one line on each), then **stop**: "Which direction: A, B or C? Or mix,
+  e.g. A's type with C's layout."
+- Record the answer as `## Direction picked`, then build the full design below in that direction.
+
+If the user brought their own references, skip the directions: their picks already set the look.
+
 Then:
 
 1. Make a desktop frame at 1440 wide, building each PRD section in order inside it. Use the PRD's real copy word for
    word; never lorem ipsum. Use the imagery the PRD asks for, or a clearly marked placeholder ("PHOTO: <what>").
 2. Make a mobile frame at 390 wide, following the PRD's "Responsive notes". This is required, not optional.
 3. Next to each section, add a small note saying which pick it borrows from and what (from `picks.md`).
-4. Screenshot both frames.
-5. Log `## Round 0` in `design-notes.md` (frames created, picks used for each section).
-6. **Stop.** Show the screenshots and ask for feedback: what to keep, what to change, what feels off.
+4. **Self-critique before showing:** run `impeccable critique` on the frames. Fix what it finds that doesn't
+   conflict with the brief or the picks, and list what you fixed in one line.
+5. Screenshot both frames.
+6. Log `## Round 0` in `design-notes.md` (frames created, picks used for each section).
+7. **Stop.** Show the screenshots and ask for feedback: what to keep, what to change, what feels off.
 
 ## Stage 5: Iterate
 
@@ -71,6 +91,13 @@ Each round:
 
 1. Apply the user's feedback. Change only what they asked for, plus whatever that change forces elsewhere (say what
    that was).
+   - Vague feedback maps to `impeccable` commands: "bland, play it up" → `bolder`; "too loud, busy" → `quieter`;
+     "too much going on" → `distill`; "colours feel off" → `colorize`; "type feels off" → `typeset`; "layout feels
+     off" → `layout`.
+   - Motion described vaguely ("the bouncy thing", "slides in smooth") → use `animation-vocabulary` to name it
+     exactly, and confirm the term with the user in one line.
+   - Before showing the round, run `impeccable critique` on the changed frames and fix what it finds, within the
+     feedback's scope.
 2. Keep desktop and mobile in step. A change on one frame is carried to the other unless the user says it's for one
    only.
 3. Append to `design-notes.md`:

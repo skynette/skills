@@ -24,6 +24,8 @@ Load these skills before writing code (any that aren't installed: follow the sam
 | The build: layout, copy and imagery rules, the checker, the finish gate | `design-taste-frontend` | Runs the build. **The approved design wins over its house rules.** List every house rule you bent and why. |
 | Aesthetic direction | `frontend-design` | Only where the approved design leaves something open (a state that wasn't drawn, a breakpoint between frames). |
 | Interaction polish: hover and press states, transitions, popovers, focus | `emil-design-eng` | Apply to every interactive element. |
+| Choosing libraries (framework stacks only) | `pick-ui-library` | Toasts, drawers, menus, primitives: use what it picks rather than hand-rolling. |
+| Group motion (entrances, staggers) | `choreograph` | One entrance per container, non-uniform delays. |
 | Motion | `gsap-core`, plus `gsap-scrolltrigger` / `gsap-timeline` when the PRD calls for scroll or sequenced motion | Implements the motion from the PRD's "Interactions & motion" section. Wrap it in `gsap.matchMedia()` with a `prefers-reduced-motion` branch. |
 
 **If the canvas was Claude Design,** start from its artboards, because they are already HTML and CSS:
@@ -40,7 +42,18 @@ doesn't have.
 
 1. Serve the page and screenshot it at 1440 and 390. Put each screenshot beside the matching canvas frame (a Pencil
    screenshot, or for Claude Design, ask the user to compare against the artboard link) and list the differences. Fix anything that wasn't intended.
-2. Run the `design-taste-frontend` checker or finish gate, as that skill describes. Report what it flags. Fix what
+2. Run the review passes, in order, and fix what doesn't conflict with the approved design:
+   - `impeccable audit`: accessibility, performance and responsive checks.
+   - `review-animations`: every transition and animation, against Emil's bar.
+   - `break-ui`: worst-case data (long names, empty states, huge numbers, non-Latin text) on every component that
+     shows data.
+   - `impeccable polish`: the final pass.
+3. Run the `design-taste-frontend` checker or finish gate, as that skill describes. Report what it flags. Fix what
    doesn't conflict with the approved design, and list the rest as "kept because the design calls for it".
-3. **Stop.** Show the user the screenshots, the bent-rules list and how to open the page. When they're happy, set
+4. **Stop.** Show the user the screenshots, the bent-rules list and how to open the page. When they're happy, set
    `STATUS.md` to `stage: done`.
+
+## 4. After the user signs off
+
+Offer once: "Want me to save the corrections you made on this page as rules for next time?" If yes, run `learn-taste`
+on this page's round log (`design-notes.md`) so the next page starts with them.
