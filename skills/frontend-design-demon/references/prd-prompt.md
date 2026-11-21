@@ -1,6 +1,6 @@
 # Stage 2: PRD
 
-GPT writes the PRD (through the Codex CLI) from the brief, the taste notes and the picks. It is Markdown only, with
+GPT writes the PRD (through the Codex CLI; when this skill is already running inside Codex, write it directly, see "Running in Codex" in SKILL.md) from the brief, the taste notes and the picks. It is Markdown only, with
 no designs. The user approves it before anything is drawn.
 
 ## 1. Build the prompt

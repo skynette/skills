@@ -132,6 +132,19 @@ Check once at the start of a page and say in one line what's missing. Never bloc
 
 Say in one line which rule lost when it matters.
 
+## Running in Codex
+
+The same skill works in Codex (invoke it as `$frontend-design-demon`). Codex has no Claude-only tools, so:
+
+- **Stage 2 (PRD):** you are already GPT. Write `prd.md` yourself from the prompt template in
+  `references/prd-prompt.md`, run its heading check, and use the first line `<!-- prd-source: gpt (codex session) -->`.
+  Don't shell out to `codex exec`.
+- **Stage 3 (canvas):** Claude Design isn't available. Ask "Pencil (default) or Figma?" and skip every Claude Design
+  step. The Pencil tools are the same, minus the `mcp__pencil__` prefix.
+- **Browser work:** wherever a step says Claude in Chrome, use the Playwright or browser-use MCP. Mobbin and Pinterest
+  need a signed-in browser, so put them in `skipped.json` if neither is signed in.
+- **Checkpoints and approvals** work exactly as above: stop and wait for the user's words.
+
 ## Never
 
 - Make the final reference picks for the user.
