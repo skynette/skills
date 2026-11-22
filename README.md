@@ -13,7 +13,8 @@ references → PRD → canvas → design → iterate → code
 ```
 
 - **References:** bring your own (screenshots, links, a folder) or answer a few taste questions. It then gathers
-  candidates from Awwwards, Lapa Ninja, Mobbin and Pinterest, and you pick.
+  candidates from Awwwards, Lapa Ninja, Mobbin, Pinterest and Refero Styles (which also hands over each style's
+  colours, type and spacing as a DESIGN.md), and you pick.
 - **PRD:** GPT writes it through the Codex CLI (Markdown only, no mockups), and you approve it. If Codex isn't
   installed, Claude writes it.
 - **Canvas:** Claude Design (default), Pencil or Figma. Your picks go on a References board. With no references of

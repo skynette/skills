@@ -57,8 +57,10 @@ SKILL.md). Their rules apply to what you draw:
 
 **Plan the system first** (only if the project has no styles of its own and no design system was chosen): use
 `ui-ux-pro-max` to look up a palette, a font pairing and the UX rules for this product type, guided by `picks.md` and
-`taste.md`. Write the result to `design-notes.md` under `## System` (colours, type, spacing, in a few lines). The picks
-outrank its suggestions.
+`taste.md`. If a pick has a `- System: refs/….design.md` line (a Refero Styles pick), read that file first and use
+its palette roles, type scale and spacing as the starting point, adapted to this brand, not copied. Write the result to
+`design-notes.md` under `## System` (colours, type, spacing, in a few lines). The picks outrank `ui-ux-pro-max`'s
+suggestions.
 
 **Three directions first, only when the user brought no references** (`taste.md` exists, or the picks all came from
 sourcing):

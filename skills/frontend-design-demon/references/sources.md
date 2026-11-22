@@ -20,6 +20,7 @@ Accept any mix of these. Put everything in `<page>/refs/` and name files `u01`, 
 | Screenshots in chat | Save each to `refs/` (if they arrived only as pasted images and can't be saved, describe each in `picks.md` and ask the user for the file path). |
 | Links | Open each in the browser (Claude in Chrome, or Playwright if that isn't connected) and screenshot it at 1440 wide, full page. If the user named a section, also screenshot just that section. |
 | A folder path | Take every `.png`, `.jpg`, `.jpeg` and `.webp` at the top level only (no subfolders), and copy them into `refs/`. Say "took N images from <path>". If there are none, say so and ask again. |
+| A Refero Styles link (styles.refero.design/style/…) | Screenshot the style page's hero as usual, then also save its design system: see "Refero Styles" below. |
 | "It's on the canvas" | Read the References board (or the user's selection) in Pencil and screenshot it into `refs/`. |
 
 Then look at every reference and draft `picks.md`:
@@ -62,6 +63,7 @@ Target 12 candidates from at least 3 sources, chosen to fit `taste.md` (or the c
 | Lapa Ninja (lapa.ninja) | Claude in Chrome, or Playwright | Full landing page, cropped to its best section |
 | Mobbin (mobbin.com) | **Claude in Chrome only** (needs the user's signed-in Chrome) | The screen or flow that fits |
 | Pinterest (pinterest.com) | **Claude in Chrome only** (signed in) | The pin image |
+| Refero Styles (styles.refero.design) | Any browser; no login. Search box or category chips (e.g. "Cinematic dark", "Editorial magazine", "Dark devtool landing"), or "More like this" on a style that fits | The style page's hero screenshot, plus its DESIGN.md (see below) |
 
 Rules:
 - Load the Claude in Chrome skill before its first use, and work in a new tab.
@@ -69,7 +71,7 @@ Rules:
   load), don't try to get around it or log in. Add `{"source":"<name>","reason":"<not signed in | blocked | down>"}` to
   `refs/skipped.json`, fill the 12 from the remaining sources, and name the skipped ones when you show the shortlist.
 - Save each candidate as `refs/rNN.png` and append it to `refs/candidates.json`:
-  `{"id":"r01","file":"r01.png","url":"https://…","source":"awwwards|mobbin|pinterest|lapa","note":"what's good about it, 1 line"}`
+  `{"id":"r01","file":"r01.png","url":"https://…","source":"awwwards|mobbin|pinterest|lapa|refero","note":"what's good about it, 1 line"}`
 - Mix it up: avoid 12 of the same kind. Make at least a third of them unexpected, not the most popular result.
 - Build the page and open it:
 
@@ -80,3 +82,20 @@ open <page>/refs/shortlist.html
 
 **Stop.** Ask the user to reply with 4–5 numbers and what they like about each. Write `picks.md` (same format as
 above, using `rNN` ids) from their answer, then set `STATUS.md` to `stage: prd`.
+
+## Refero Styles
+
+styles.refero.design is a free library of 2,000+ design systems pulled from real product sites. Each style page
+(`styles.refero.design/style/<id>`) has a hero screenshot plus tabs for the system itself: palette with hex values and
+roles, type scale, spacing, radius, shadows, components, and do/don't notes. It's the one source that gives tokens,
+not just a picture, so it's the best place to look when the taste interview landed on a clear colour/type direction.
+
+- **Capture:** screenshot the hero as `rNN.png` (or `uNN.png` for a link the user sent). Then open the style's
+  **DESIGN.md** tab and save its text as `refs/rNN.design.md` next to the image. If the tab's text can't be copied,
+  write the palette (hex + role), font families and type scale from the Preview tab into that file by hand.
+- In `candidates.json`, use `"source":"refero"` and the style page URL. Don't save the `.design.md` for candidates
+  that don't make the picks; delete those files once `picks.md` is confirmed.
+- In `picks.md`, add a line under the pick: `- System: refs/rNN.design.md`.
+- These systems are measured from real brands (Apple, Vercel, ElevenLabs…). Borrow how the system works (contrast,
+  scale, spacing rhythm, how colour is rationed), never the brand itself: no copying a logo, signature colour as the
+  hero colour, or product imagery.
